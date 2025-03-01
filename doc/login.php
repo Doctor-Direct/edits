@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/connection.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
 session_start(); // Start session
 
 // Check for form submission
