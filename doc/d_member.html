@@ -1,23 +1,3 @@
-<?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
-session_start();
-
-// Fetch doctor details
-$doctor_id = $_SESSION['doctor_id'];  // Assuming doctor_id is stored in session
-$query = "SELECT d.fullname, c.category_name, d.nic, d.gender, d.profile_image
-          FROM doctor d
-          JOIN category c ON d.category = c.category_id
-          WHERE d.doctor_id = '$doctor_id'";
-$result = mysqli_query($connection, $query);
-$doctor = mysqli_fetch_assoc($result);
-
-// Fetch hospital details
-$hospital_query = "SELECT h.hos_name FROM doctor_hospitals dh
-                   JOIN hospitals h ON dh.hos_id = h.hos_id
-                   WHERE dh.doctor_id = '$doctor_id'";
-$hospital_result = mysqli_query($connection, $hospital_query);
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -43,23 +23,23 @@ $hospital_result = mysqli_query($connection, $hospital_query);
         <div class="content">
             <!-- Doctor Image -->
             <div class="doctor-image">
-                <img src="<?php echo $doctor['profile_image']; ?>" alt="Doctor Image">
+                <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Doctor Image">
             </div>
 
             <!-- Profile Section -->
             <section id="profile" class="section active">
                 <h2>Doctor Profile</h2>
                 <table>
-                    <tr><th>Name:</th><td><?php echo $doctor['fullname']; ?></td></tr>
-                    <tr><th>Category:</th><td><?php echo $doctor['category_name']; ?></td></tr>
-                    <tr><th>NIC:</th><td><?php echo $doctor['nic']; ?></td></tr>
-                    <tr><th>Gender:</th><td><?php echo $doctor['gender']; ?></td></tr>
+                    <tr><th>Name:</th><td><?php echo htmlspecialchars($doctor['fullname']); ?></td></tr>
+                    <tr><th>Category:</th><td><?php echo htmlspecialchars($doctor['category_name']); ?></td></tr>
+                    <tr><th>NIC:</th><td><?php echo htmlspecialchars($doctor['nic']); ?></td></tr>
+                    <tr><th>Gender:</th><td><?php echo htmlspecialchars($doctor['gender']); ?></td></tr>
                     <tr>
                         <th>Hospitals:</th>
                         <td>
                             <ul>
                                 <?php while ($row = mysqli_fetch_assoc($hospital_result)) {
-                                    echo "<li>" . $row['hos_name'] . "</li>";
+                                    echo "<li>" . htmlspecialchars($row['hos_name']) . "</li>";
                                 } ?>
                             </ul>
                         </td>
@@ -83,4 +63,3 @@ $hospital_result = mysqli_query($connection, $hospital_query);
 </body>
 </html>
 
-<?php mysqli_close($connection); ?>
