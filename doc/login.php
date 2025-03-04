@@ -2,6 +2,12 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
 session_start(); // Start session
 
+// Redirect if already logged in
+if (isset($_SESSION['doctor_id'])) {
+    header('Location: dashboard.php');
+    exit();
+}
+
 // Check for form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $errors = array();
@@ -16,36 +22,43 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // If no errors, process login
     if (empty($errors)) {
-        $username = mysqli_real_escape_string($connection, $_POST['username']);
-        $password = $_POST['password']; // No need to escape since not directly used in query
+        $username = trim($_POST['username']);
+        $password = trim($_POST['password']);
 
-        // Query to check login credentials
-        $query = "SELECT * FROM doctor WHERE username = '{$username}' LIMIT 1";
-        $result_set = mysqli_query($connection, $query);
+        // Use prepared statements to prevent SQL injection
+        $query = "SELECT * FROM doctor WHERE username = ? LIMIT 1";
+        $stmt = mysqli_prepare($connection, $query);
+        mysqli_stmt_bind_param($stmt, "s", $username);
+        mysqli_stmt_execute($stmt);
+        $result_set = mysqli_stmt_get_result($stmt);
 
-        if ($result_set) {
-            if (mysqli_num_rows($result_set) == 1) {
-                $user = mysqli_fetch_assoc($result_set);
+        if ($result_set && mysqli_num_rows($result_set) == 1) {
+            $user = mysqli_fetch_assoc($result_set);
 
-                // Use password_verify to compare hashed passwords
-                if (password_verify($password, $user['password'])) {
-                    $_SESSION['username'] = $username; // Store username in session
+            // Use password_verify to compare hashed passwords
+            if (password_verify($password, $user['password'])) {
+                // Regenerate session ID for security
+                session_regenerate_id(true);
 
-                    // Show success popup and redirect after clicking OK
-                    echo "<script>
-                        alert('Login Successful!');
-                        window.location.href = 'd_member.php';
-                    </script>";
-                    exit();
-                } else {
-                    $errors[] = 'Invalid Username / Password';
-                }
+                // Store user data in session
+                $_SESSION['doctor_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                // Show success popup and redirect after clicking OK
+                echo "<script>
+                    alert('Login Successful!');
+                    window.location.href = 'd_member.php';
+                </script>";
+                exit();
             } else {
                 $errors[] = 'Invalid Username / Password';
             }
         } else {
-            $errors[] = 'Database Query Failed: ' . mysqli_error($connection);
+            $errors[] = 'Invalid Username / Password';
         }
+
+        // Close the statement
+        mysqli_stmt_close($stmt);
     }
 }
 ?>

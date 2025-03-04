@@ -10,7 +10,7 @@ if (!isset($_SESSION['doctor_id'])) {
 $doctor_id = mysqli_real_escape_string($connection, $_SESSION['doctor_id']); 
 
 // Fetch doctor details
-$query = "SELECT d.fullname, c.category_name, d.nic, d.gender, d.profile_image
+$query = "SELECT d.fullname, c.category_name, 
           FROM doctor d
           JOIN category c ON d.category = c.category_id
           WHERE d.doctor_id = '$doctor_id'";
