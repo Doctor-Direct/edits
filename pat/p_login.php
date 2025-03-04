@@ -34,7 +34,7 @@
                 <input type="submit" class="input-submit" value="Login">
             </div>
             <div class="switch-form">
-                Don't have an account? <a href="patient_signup.html">Sign Up</a>
+                Don't have an account? <a href="p_sign.php">Sign Up</a>
             </div>
         </form>
     </div>
