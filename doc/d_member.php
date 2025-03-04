@@ -24,9 +24,9 @@ if (!$result) {
 $doctor = mysqli_fetch_assoc($result);
 
 // Fetch hospital details
-$hospital_query = "SELECT h.hos_name FROM doctor_hospitals dh
-                   JOIN hospitals h ON dh.hos_id = h.hos_id
-                   WHERE dh.doctor_id = '$doctor_id'";
+// Assuming the correct table is 'hospitals' and it has a column 'doctor_id' to link doctors
+$hospital_query = "SELECT h.hos_name FROM hospitals h
+                   WHERE h.doctor_id = '$doctor_id'";
 $hospital_result = mysqli_query($connection, $hospital_query);
 
 // Handle hospital query failure
