@@ -10,9 +10,9 @@ if (!isset($_SESSION['doctor_id'])) {
 $doctor_id = mysqli_real_escape_string($connection, $_SESSION['doctor_id']); 
 
 // Fetch doctor details
-$query = "SELECT d.fullname, c.category_name, 
+$query = "SELECT d.fullname, c.category_name
           FROM doctor d
-          JOIN category c ON d.category = c.category_id
+          JOIN category c ON d.category_id = c.category_id
           WHERE d.doctor_id = '$doctor_id'";
 $result = mysqli_query($connection, $query);
 
@@ -33,9 +33,6 @@ $hospital_result = mysqli_query($connection, $hospital_query);
 if (!$hospital_result) {
     die("Database Query Failed: " . mysqli_error($connection));
 }
-
-// Set a default profile image if none exists
-$profile_image = !empty($doctor['profile_image']) ? $doctor['profile_image'] : '/doc_direct_main/default-profile.png';
 ?>
 
 <!DOCTYPE html>
@@ -60,19 +57,12 @@ $profile_image = !empty($doctor['profile_image']) ? $doctor['profile_image'] : '
 
         <!-- Main Content -->
         <div class="content">
-            <!-- Doctor Image -->
-            <div class="doctor-image">
-                <img src="<?php echo htmlspecialchars($profile_image); ?>" alt="Doctor Image">
-            </div>
-
             <!-- Profile Section -->
             <section id="profile" class="section active">
                 <h2>Doctor Profile</h2>
                 <table>
                     <tr><th>Name:</th><td><?php echo htmlspecialchars($doctor['fullname']); ?></td></tr>
                     <tr><th>Category:</th><td><?php echo htmlspecialchars($doctor['category_name']); ?></td></tr>
-                    <tr><th>NIC:</th><td><?php echo htmlspecialchars($doctor['nic']); ?></td></tr>
-                    <tr><th>Gender:</th><td><?php echo htmlspecialchars($doctor['gender']); ?></td></tr>
                     <tr>
                         <th>Hospitals:</th>
                         <td>
