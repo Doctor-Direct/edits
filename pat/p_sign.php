@@ -22,7 +22,7 @@
                 <i class="fa-solid fa-phone icon"></i>
             </div>
             <div class="input_wrapper">
-                <input type="date" id="signup-birthday" class="input_field" placeholder=" " required>
+                <input type="date" id="signup-birthday" class="input_field" required>
                 <label for="signup-birthday" class="label">Date of Birth</label>
                 <i class="fa-solid fa-cake-candles icon"></i>
             </div>
@@ -32,17 +32,17 @@
                 <i class="fa-solid fa-id-card icon"></i>
             </div>
             <div class="input_wrapper">
-                <label for="signup-gender" class="label">Gender</label>
                 <select id="signup-gender" class="input_field" required>
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select>
+                <label for="signup-gender" class="label">Gender</label>
                 <i class="fa-solid fa-venus-mars icon"></i>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-address" class="input_field" placeholder=" " required>
+                <input type="text" id="signup-address" class="input_field" required>
                 <label for="signup-address" class="label">Home Address</label>
                 <i class="fa-solid fa-map-marker-alt icon"></i>
             </div>
@@ -52,7 +52,7 @@
                 <i class="fa-regular fa-envelope icon"></i>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-username" class="input_field" placeholder=" " required>
+                <input type="text" id="signup-username" class="input_field" required>
                 <label for="signup-username" class="label">Username</label>
                 <i class="fa-regular fa-user icon"></i>
             </div>
