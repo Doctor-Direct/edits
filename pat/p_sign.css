@@ -21,7 +21,7 @@ body {
 }
 
 .container {
-    width:100%;
+    width: 100%;
     max-width: 450px;
     padding: 20px;
     background-color: rgba(0, 0, 0, 0.5);
@@ -141,6 +141,32 @@ body {
 
 .switch-form a:hover {
     text-decoration: underline;
+}
+
+/* Specific styles for the select dropdown */
+.input_wrapper select {
+    width: 100%;
+    height: 50px;
+    border: 2px solid var(--primary-color);
+    border-radius: 30px;
+    background: transparent;
+    color: var(--white-color);
+    font-size: 16px;
+    padding: 0 20px;
+    outline: none;
+    appearance: none; /* Remove default arrow */
+    cursor: pointer;
+}
+
+.input_wrapper select:focus {
+    border-color: var(--second-color);
+}
+
+/* Add a custom arrow for the select dropdown */
+.input_wrapper select {
+    background: url('data:image/svg+xml;utf8,<svg fill="%23999" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>') no-repeat right 20px center;
+    background-size: 12px;
+    padding-right: 40px; /* Space for the custom arrow */
 }
 
 @media screen and (max-width: 564px) {
