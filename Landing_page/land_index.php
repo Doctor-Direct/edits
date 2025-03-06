@@ -80,14 +80,12 @@
                 reduces wait times, and provides seamless scheduling, making healthcare more efficient.
             </p><br>
             <h3>Opportunities of Doc Direct</h3><br>
-            <ul class="opportunities-list">
-                <li>📅 <strong>Easy Appointment Booking:</strong> Patients can schedule visits in just a few clicks.</li>
-                <li>⏳ <strong>Reduced Waiting Times:</strong> Efficient scheduling ensures minimal delays.</li>
-                <li>💬 <strong>Doctor-Patient Communication:</strong> Secure chat and video consultation options.</li>
-                <li>📂 <strong>Digital Medical Records:</strong> Easy access to patient history and prescriptions.</li>
-                <li>🌍 <strong>Wider Accessibility:</strong> Patients can connect with doctors from anywhere.</li>
-                <li>🔔 <strong>Automated Reminders:</strong> Reduce missed appointments with timely notifications.</li>
-            </ul>
+        </div>
+    </section>
+    
+    <section class="listview">
+        <div class="list">
+            <h1>hi</h1>
         </div>
     </section>
 

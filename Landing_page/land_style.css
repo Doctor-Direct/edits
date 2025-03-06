@@ -352,3 +352,10 @@ button[type="submit"] {
   font-size: 16px;
   font-weight: 500;
 }
+
+.list{
+  border: 1px solid black;
+  padding: 20px;
+}
+
+      
