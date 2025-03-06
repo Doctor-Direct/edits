@@ -1,47 +1,67 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
-session_start();
+// Enable error reporting for debugging
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-// Check for form submission
+// Include database connection
+require_once("../connection.php");
+
+// Initialize an empty errors array
+$errors = [];
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $errors = array();
+    // Collect form data
+    $fullname = trim($_POST['fullname']);
+    $contact = trim($_POST['contact']);
+    $birthday = trim($_POST['birthday']);
+    $nic = trim($_POST['nic']);
+    $gender = trim($_POST['gender']);
+    $address = trim($_POST['address']);
+    $email = trim($_POST['email']);
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
+    $confirm_password = $_POST['confirm_password'];
 
-    // Sanitize and validate input
-    $fullname = mysqli_real_escape_string($connection, trim($_POST['fullname']));
-    $contact = mysqli_real_escape_string($connection, trim($_POST['contact']));
-    $birthday = mysqli_real_escape_string($connection, trim($_POST['birthday']));
-    $nic = mysqli_real_escape_string($connection, trim($_POST['nic']));
-    $gender = mysqli_real_escape_string($connection, trim($_POST['gender']));
-    $address = mysqli_real_escape_string($connection, trim($_POST['address']));
-    $email = mysqli_real_escape_string($connection, trim($_POST['email']));
-    $username = mysqli_real_escape_string($connection, trim($_POST['username']));
-    $password = mysqli_real_escape_string($connection, trim($_POST['password']));
-    $confirm_password = mysqli_real_escape_string($connection, trim($_POST['confirm_password']));
+    // Basic Validations
+    if (empty($fullname) || empty($contact) || empty($birthday) || empty($nic) ||
+        empty($gender) || empty($address) || empty($email) || empty($username) || empty($password)) {
+        $errors[] = "All fields are required.";
+    }
 
-    // Basic validations
-    if (empty($fullname) || empty($contact) || empty($birthday) || empty($nic) || empty($gender) || empty($address) || empty($email) || empty($username) || empty($password) || empty($confirm_password)) {
-        $errors[] = 'All fields are required.';
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Invalid email format.";
     }
 
     if ($password !== $confirm_password) {
-        $errors[] = 'Passwords do not match.';
+        $errors[] = "Passwords do not match.";
     }
 
-    // If no errors, insert into database
-    if (empty($errors)) {
-        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Securely hash the password
+    // Check if username or email already exists
+    $checkQuery = "SELECT * FROM patients WHERE email='$email' OR username='$username'";
+    $result = mysqli_query($connection, $checkQuery);
+    if (mysqli_num_rows($result) > 0) {
+        $errors[] = "Email or Username already exists!";
+    }
 
-        $query = "INSERT INTO patient (fullname, contact, birthday, nic, gender, address, email, username, password) 
+    // If no errors, insert data
+    if (empty($errors)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Secure hashing
+
+        $query = "INSERT INTO patients (fullname, contact, birthday, nic, gender, address, email, username, password)
                   VALUES ('$fullname', '$contact', '$birthday', '$nic', '$gender', '$address', '$email', '$username', '$hashed_password')";
 
         if (mysqli_query($connection, $query)) {
-            echo "<script>alert('Registration Successful! Redirecting to login page.'); window.location.href='patient_login.php';</script>";
+            echo "<script>alert('Registration Successful! Redirecting to login page.');
+                  window.location.href='p_login.php';</script>";
             exit();
         } else {
-            $errors[] = 'Database Insertion Failed: ' . mysqli_error($connection);
+            $errors[] = "Database Insertion Failed: " . mysqli_error($connection);
         }
     }
 }
+
+// Close database connection
+mysqli_close($connection);
 ?>
 
 <!DOCTYPE html>
@@ -51,30 +71,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Signup</title>
     <link rel="stylesheet" href="p_sign.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <form method="post" action="patient_signup.php" id="signup-form">
+        <form id="signup-form" class="form" action="p_sign.php" method="POST">
             <div class="form-title">Patient Signup</div>
-            <?php if (!empty($errors)) {
-                echo '<p class="Error">' . implode('<br>', $errors) . '</p>';
-            } ?>
+
+            <?php if (!empty($errors)) { ?>
+                <div class="error-box">
+                    <?php foreach ($errors as $error) {
+                        echo "<p class='error'>$error</p>";
+                    } ?>
+                </div>
+            <?php } ?>
+
             <div class="input_wrapper">
                 <input type="text" name="fullname" class="input_field" required>
                 <label class="label">Full Name</label>
+                <i class="fa-regular fa-user icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="text" name="contact" class="input_field" required>
                 <label class="label">Contact Number</label>
+                <i class="fa-solid fa-phone icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="date" name="birthday" class="input_field" required>
                 <label class="label">Date of Birth</label>
+                <i class="fa-solid fa-cake-candles icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="text" name="nic" class="input_field" required>
                 <label class="label">NIC Number</label>
+                <i class="fa-solid fa-id-card icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <select name="gender" class="input_field" required>
                     <option value="">Select Gender</option>
@@ -83,36 +118,47 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="other">Other</option>
                 </select>
                 <label class="label">Gender</label>
+                <i class="fa-solid fa-venus-mars icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="text" name="address" class="input_field" required>
                 <label class="label">Home Address</label>
+                <i class="fa-solid fa-map-marker-alt icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="email" name="email" class="input_field" required>
                 <label class="label">Email</label>
+                <i class="fa-regular fa-envelope icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="text" name="username" class="input_field" required>
                 <label class="label">Username</label>
+                <i class="fa-regular fa-user icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="password" name="password" class="input_field" required>
                 <label class="label">Password</label>
+                <i class="fa-solid fa-lock icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="password" name="confirm_password" class="input_field" required>
                 <label class="label">Confirm Password</label>
+                <i class="fa-solid fa-lock icon"></i>
             </div>
+
             <div class="input_wrapper">
                 <input type="submit" class="input-submit" value="Sign Up">
             </div>
+
             <div class="switch-form">
-                Already have an account? <a href="patient_login.php">Login</a>
+                Already have an account? <a href="p_login.php">Login</a>
             </div>
         </form>
     </div>
 </body>
 </html>
-
-<?php mysqli_close($connection); ?>
