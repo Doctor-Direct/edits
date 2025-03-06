@@ -1,3 +1,49 @@
+<?php
+require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
+session_start();
+
+// Check for form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $errors = array();
+
+    // Sanitize and validate input
+    $fullname = mysqli_real_escape_string($connection, trim($_POST['fullname']));
+    $contact = mysqli_real_escape_string($connection, trim($_POST['contact']));
+    $birthday = mysqli_real_escape_string($connection, trim($_POST['birthday']));
+    $nic = mysqli_real_escape_string($connection, trim($_POST['nic']));
+    $gender = mysqli_real_escape_string($connection, trim($_POST['gender']));
+    $address = mysqli_real_escape_string($connection, trim($_POST['address']));
+    $email = mysqli_real_escape_string($connection, trim($_POST['email']));
+    $username = mysqli_real_escape_string($connection, trim($_POST['username']));
+    $password = mysqli_real_escape_string($connection, trim($_POST['password']));
+    $confirm_password = mysqli_real_escape_string($connection, trim($_POST['confirm_password']));
+
+    // Basic validations
+    if (empty($fullname) || empty($contact) || empty($birthday) || empty($nic) || empty($gender) || empty($address) || empty($email) || empty($username) || empty($password) || empty($confirm_password)) {
+        $errors[] = 'All fields are required.';
+    }
+
+    if ($password !== $confirm_password) {
+        $errors[] = 'Passwords do not match.';
+    }
+
+    // If no errors, insert into database
+    if (empty($errors)) {
+        $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Securely hash the password
+
+        $query = "INSERT INTO patient (fullname, contact, birthday, nic, gender, address, email, username, password) 
+                  VALUES ('$fullname', '$contact', '$birthday', '$nic', '$gender', '$address', '$email', '$username', '$hashed_password')";
+
+        if (mysqli_query($connection, $query)) {
+            echo "<script>alert('Registration Successful! Redirecting to login page.'); window.location.href='patient_login.php';</script>";
+            exit();
+        } else {
+            $errors[] = 'Database Insertion Failed: ' . mysqli_error($connection);
+        }
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,74 +51,68 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Signup</title>
     <link rel="stylesheet" href="p_sign.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
 </head>
 <body>
     <div class="container">
-        <form id="signup-form" class="form">
+        <form method="post" action="patient_signup.php" id="signup-form">
             <div class="form-title">Patient Signup</div>
+            <?php if (!empty($errors)) {
+                echo '<p class="Error">' . implode('<br>', $errors) . '</p>';
+            } ?>
             <div class="input_wrapper">
-                <input type="text" id="signup-fullname" class="input_field" required>
-                <label for="signup-fullname" class="label">Full Name</label>
-                <i class="fa-regular fa-user icon"></i>
+                <input type="text" name="fullname" class="input_field" required>
+                <label class="label">Full Name</label>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-contact" class="input_field" required>
-                <label for="signup-contact" class="label">Contact Number</label>
-                <i class="fa-solid fa-phone icon"></i>
+                <input type="text" name="contact" class="input_field" required>
+                <label class="label">Contact Number</label>
             </div>
             <div class="input_wrapper">
-                <input type="date" id="signup-birthday" class="input_field" required>
-                <label for="signup-birthday" class="label">Date of Birth</label>
-                <i class="fa-solid fa-cake-candles icon"></i>
+                <input type="date" name="birthday" class="input_field" required>
+                <label class="label">Date of Birth</label>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-nic" class="input_field" required>
-                <label for="signup-nic" class="label">NIC Number</label>
-                <i class="fa-solid fa-id-card icon"></i>
+                <input type="text" name="nic" class="input_field" required>
+                <label class="label">NIC Number</label>
             </div>
             <div class="input_wrapper">
-                <select id="signup-gender" class="input_field" required>
+                <select name="gender" class="input_field" required>
                     <option value="">Select Gender</option>
                     <option value="male">Male</option>
                     <option value="female">Female</option>
                     <option value="other">Other</option>
                 </select>
-                <label for="signup-gender" class="label">Gender</label>
-                <i class="fa-solid fa-venus-mars icon"></i>
+                <label class="label">Gender</label>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-address" class="input_field" required>
-                <label for="signup-address" class="label">Home Address</label>
-                <i class="fa-solid fa-map-marker-alt icon"></i>
+                <input type="text" name="address" class="input_field" required>
+                <label class="label">Home Address</label>
             </div>
             <div class="input_wrapper">
-                <input type="email" id="signup-email" class="input_field" required>
-                <label for="signup-email" class="label">Email</label>
-                <i class="fa-regular fa-envelope icon"></i>
+                <input type="email" name="email" class="input_field" required>
+                <label class="label">Email</label>
             </div>
             <div class="input_wrapper">
-                <input type="text" id="signup-username" class="input_field" required>
-                <label for="signup-username" class="label">Username</label>
-                <i class="fa-regular fa-user icon"></i>
+                <input type="text" name="username" class="input_field" required>
+                <label class="label">Username</label>
             </div>
             <div class="input_wrapper">
-                <input type="password" id="signup-password" class="input_field" required>
-                <label for="signup-password" class="label">Password</label>
-                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" name="password" class="input_field" required>
+                <label class="label">Password</label>
             </div>
             <div class="input_wrapper">
-                <input type="password" id="signup-confirm-password" class="input_field" required>
-                <label for="signup-confirm-password" class="label">Confirm Password</label>
-                <i class="fa-solid fa-lock icon"></i>
+                <input type="password" name="confirm_password" class="input_field" required>
+                <label class="label">Confirm Password</label>
             </div>
             <div class="input_wrapper">
                 <input type="submit" class="input-submit" value="Sign Up">
             </div>
             <div class="switch-form">
-                Already have an account? <a href="patient_login.html">Login</a>
+                Already have an account? <a href="patient_login.php">Login</a>
             </div>
         </form>
     </div>
 </body>
 </html>
+
+<?php mysqli_close($connection); ?>
