@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['username'] = $row['username'];
                 
                 // Redirect to patient dashboard
-                header("Location: .php");
+                header("Location:test.html");
                 exit();
             } else {
                 $error_msg = "Invalid username or password.";
