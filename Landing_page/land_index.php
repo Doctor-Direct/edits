@@ -35,7 +35,7 @@
         <ul class="nav-links">
             <li><a href="land_index.php">Home</a></li>
             <li><a href="land_log_index.html">Login</a></li>
-            <li><a href="appoinment.html">Appoinment</a></li>
+            <li><a href="appoinment.php">Appoinment</a></li>
             <li><a href="#">About Us</a></li>
         </ul>
     </nav>
