@@ -78,6 +78,9 @@ body {
     gap: 20px;
     align-items: flex-end;
     width: auto;
+    background-color: rgba(32, 112, 218, 0.726);
+    border-radius: 12px;
+    padding: 10px;
   }
   
   .form-group {
