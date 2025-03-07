@@ -61,7 +61,15 @@ body {
     display: flex;
     margin: 20px;
     gap: 50px;
-  
+    border: none;
+    border-radius: 14px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.349);
+}
+
+.form{
+    width: 800px;
+    height: auto;
+    padding: 10px;
 }
 
 .vertical-form {
@@ -120,11 +128,12 @@ body {
 .img {
     width: 500px;
     height: 500px;
-    border: 1px solid black;
+    border: none;
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden; /* Ensures the image stays within bounds */
+    padding: 10px;
 }
 
 .img img {
