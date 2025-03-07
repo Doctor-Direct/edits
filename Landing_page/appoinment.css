@@ -56,3 +56,79 @@ body {
     color: #ffeb3b;
     transform: scale(1.1);
 }
+
+.appo {
+    display: flex;
+    margin: 20px;
+    gap: 50px;
+  
+}
+
+.vertical-form {
+    display: grid;
+    flex-wrap: wrap;
+    gap: 20px;
+    align-items: flex-end;
+    width: auto;
+  }
+  
+  .form-group {
+    flex: 1;
+    min-width: auto;
+  }
+  
+  .form-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 800;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  }
+  
+  .form-group input, .form-group select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  /* Add margin between Doctor Name and Specialization */
+  #doctor-name {
+    margin-right: 20px; /* Adjust the value as needed */
+  }
+  
+  /* Add margin between Date and Submit button */
+  #date {
+    margin-right: 20px; /* Adjust the value as needed */
+  }
+  
+  button[type="submit"] {
+    background-color: #15ee48;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 12px;
+    cursor: pointer;
+    height: auto;
+    align-self: flex-end;
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+.img {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; /* Ensures the image stays within bounds */
+}
+
+.img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures the image fills the div while maintaining aspect ratio */
+}
