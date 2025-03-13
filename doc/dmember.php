@@ -1,5 +1,5 @@
 <?php
-require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
+// Start the session (for authentication, if needed)
 session_start();
 
 // Database connection
