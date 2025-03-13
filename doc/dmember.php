@@ -2,8 +2,6 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
 session_start(); // Start session
 
-
-
 // Database connection
 $host = 'localhost';
 $dbname = 'doc_direct';
@@ -17,7 +15,7 @@ try {
     // Fetch doctor data based on the session username
     $doctor_username = $_SESSION['username'];
     $stmt = $conn->prepare("SELECT * FROM doctor WHERE username = :username");
-    $stmt->bindParam(':username', $username);
+    $stmt->bindParam(':username', $doctor_username); // Use $doctor_username here
     $stmt->execute();
     $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
 
