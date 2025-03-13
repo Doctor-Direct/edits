@@ -1,6 +1,13 @@
 <?php
-// Start the session (for authentication, if needed)
-session_start();
+require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
+session_start(); // Start session
+
+
+// Redirect to login if the user is not logged in
+if (!isset($_SESSION['doctor_username'])) {
+    header('Location: login.php');
+    exit();
+}
 
 // Database connection
 $host = 'localhost';
@@ -12,12 +19,16 @@ try {
     $conn = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-    // Fetch doctor data (replace 'sith' with the logged-in doctor's username)
-    $doctor_username = 'sith'; // Example: Fetch data for username 'sith'
+    // Fetch doctor data based on the session username
+    $doctor_username = $_SESSION['doctor_username'];
     $stmt = $conn->prepare("SELECT * FROM doctor WHERE username = :username");
     $stmt->bindParam(':username', $doctor_username);
     $stmt->execute();
     $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
+
+    if (!$doctor) {
+        die("Doctor not found.");
+    }
 } catch (PDOException $e) {
     die("Database error: " . $e->getMessage());
 }
