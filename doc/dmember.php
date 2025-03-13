@@ -3,11 +3,6 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
 session_start(); // Start session
 
 
-// Redirect to login if the user is not logged in
-if (!isset($_SESSION['doctor_username'])) {
-    header('Location: login.php');
-    exit();
-}
 
 // Database connection
 $host = 'localhost';
@@ -20,9 +15,9 @@ try {
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
     // Fetch doctor data based on the session username
-    $doctor_username = $_SESSION['doctor_username'];
+    $doctor_username = $_SESSION['username'];
     $stmt = $conn->prepare("SELECT * FROM doctor WHERE username = :username");
-    $stmt->bindParam(':username', $doctor_username);
+    $stmt->bindParam(':username', $username);
     $stmt->execute();
     $doctor = $stmt->fetch(PDO::FETCH_ASSOC);
 
