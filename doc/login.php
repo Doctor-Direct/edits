@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Show success popup and redirect after clicking OK
                 echo "<script>
                     alert('Login Successful!');
-                    window.location.href = 'd_member.php';
+                    window.location.href = 'dmember.php';
                 </script>";
                 exit();
             } else {
