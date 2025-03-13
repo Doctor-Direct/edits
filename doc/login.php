@@ -2,11 +2,7 @@
 require_once($_SERVER['DOCUMENT_ROOT'] . '/doc_direct_main/connection.php');
 session_start(); // Start session
 
-// Redirect if already logged in
-if (isset($_SESSION['doctor_id'])) {
-    header('Location: dashboard.php');
-    exit();
-}
+
 
 // Check for form submission
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
