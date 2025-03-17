@@ -23,18 +23,25 @@
     <link rel="stylesheet" href="appoinment.css">
     <!-- Flatpickr CSS for calendar and time picker -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <!-- Flatpickr CSS for calendar and time picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-bold-rounded/css/uicons-bold-rounded.css'>
 
     <!-- Flatpickr JS for functionality -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 </head>
 <body>
-    <nav class="navbar">
+<nav class="navbar">
         <div class="logo">Doc Direct</div>
         <ul class="nav-links">
             <li><a href="land_index.php">Home</a></li>
-            <li><a href="land_log_index.html">Login</a></li>
+            
             <li><a href="appoinment.php">Appoinment</a></li>
             <li><a href="#">About Us</a></li>
+            <li><a onclick="openNav()" style="cursor:pointer;"><i class="fi fi-br-search"></i></a></li>
+            <li><a href="#"><i class="fi fi-br-insert-alt"></i></a></li>
+
         </ul>
     </nav>
     <section class="appo">

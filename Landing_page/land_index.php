@@ -173,12 +173,6 @@
         </div>
     </section>
     
-    <section class="listview">
-        <div class="list">
-            <h1>hi</h1>
-        </div>
-    </section>
-
     <section class="appo" id="appo">
         <div class="container">
             <form class="horizontal-form">

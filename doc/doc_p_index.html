@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr. qq - Cardiologist</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">MedConnect</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Doctors</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <section class="doctor-profile">
+                <div class="profile-header">
+                    <div class="profile-image">
+                        <img src="/placeholder.svg?height=300&width=300" alt="Dr. www">
+                    </div>
+                    <div class="profile-info">
+                        <h1>Dr. qq</h1>
+                        <p class="specialty">Cardiologist</p>
+                        <div class="rating">
+                            <span class="stars">★★★★★</span>
+                            <span class="rating-count">(127 reviews)</span>
+                        </div>
+                        <p class="availability">Available: Mon-Fri</p>
+                        <button class="book-appointment" id="bookBtn">Book Appointment</button>
+                    </div>
+                </div>
+
+                <div class="profile-tabs">
+                    <button class="tab-btn active" data-tab="about">About</button>
+                    <button class="tab-btn" data-tab="experience">Experience</button>
+                    <button class="tab-btn" data-tab="reviews">Reviews</button>
+                    <button class="tab-btn" data-tab="location">Location</button>
+                </div>
+
+                <div class="tab-content">
+                    <div class="tab-pane active" id="about">
+                        <h2>About Dr. www</h2>
+                        <p>Dr. ww is a board-certified cardiologist with over 15 years of experience in treating heart conditions. She specializes in preventive cardiology, heart failure management, and cardiac rehabilitation.</p>
+                        
+                        <h3>Specializations</h3>
+                        <ul class="specializations">
+                            <li>Preventive Cardiology</li>
+                            <li>Heart Failure Management</li>
+                            <li>Cardiac Rehabilitation</li>
+                            <li>Echocardiography</li>
+                        </ul>
+
+                        <h3>Languages</h3>
+                        <p>English, Spanish</p>
+                    </div>
+
+                    <div class="tab-pane" id="experience">
+                        <h2>Education & Experience</h2>
+                        
+                        <div class="timeline">
+                            <div class="timeline-item">
+                                <div class="year">2005-2009</div>
+                                <div class="details">
+                                    <h3>Medical School</h3>
+                                    <p>Doctor of Medicine</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">2009-2012</div>
+                                <div class="details">
+                                    <h3> General Hospital</h3>
+                                    <p>Internal Medicine</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">2012-2015</div>
+                                <div class="details">
+                                    <h3>Fellowship, Cleveland Clinic</h3>
+                                    <p>Cardiovascular Disease</p>
+                                </div>
+                            </div>
+                            <div class="timeline-item">
+                                <div class="year">2015-Present</div>
+                                <div class="details">
+                                    <h3>Attending Physician, City Heart Center</h3>
+                                    <p>Senior Cardiologist</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="reviews">
+                        <h2>Patient Reviews</h2>
+                        
+                        <div class="review-summary">
+                            <div class="overall-rating">
+                                <span class="big-rating">4.9</span>
+                                <div class="stars">★★★★★</div>
+                                <span>Based on 127 reviews</span>
+                            </div>
+                            <div class="rating-breakdown">
+                                <div class="rating-item">
+                                    <span>Bedside Manner</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 95%"></div>
+                                    </div>
+                                    <span>4.8</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span>Wait Time</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 90%"></div>
+                                    </div>
+                                    <span>4.5</span>
+                                </div>
+                                <div class="rating-item">
+                                    <span>Knowledge</span>
+                                    <div class="progress-bar">
+                                        <div class="progress" style="width: 98%"></div>
+                                    </div>
+                                    <span>4.9</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="reviews-list">
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="reviewer">lllll.</span>
+                                    <span class="review-date">March 15, 2025</span>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                                <p>Dr. csasacz is an exceptional cardiologist. She took the time to explain my condition in detail and answered all my questions. Her approach is both professional and compassionate.</p>
+                            </div>
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="reviewer">Maria S.</span>
+                                    <span class="review-date">February 28, 2025</span>
+                                    <div class="stars">★★★★★</div>
+                                </div>
+                                <p>I've been seeing Dr. Johnson for three years now. She's helped me manage my heart condition effectively, and I've seen significant improvements in my health under her care.</p>
+                            </div>
+                            <div class="review">
+                                <div class="review-header">
+                                    <span class="reviewer">Robert T.</span>
+                                    <span class="review-date">January 10, 2025</span>
+                                    <div class="stars">★★★★☆</div>
+                                </div>
+                                <p>Very knowledgeable doctor. The only downside is sometimes the wait can be a bit long, but it's worth it for the quality of care.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tab-pane" id="location">
+                        <h2>Location & Contact</h2>
+                        
+                        <div class="location-info">
+                            <div class="map">
+                                <img src="/placeholder.svg?height=300&width=600" alt="Map location">
+                            </div>
+                            <div class="contact-details">
+                                <div class="contact-item">
+                                    <strong>Address:</strong>
+                                    <p>123 Medical Center Drive<br>Suite 456<br>Boston, MA 02115</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Phone:</strong>
+                                    <p>(555) 123-4567</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Email:</strong>
+                                    <p>dr.johnson@cityheartcenter.com</p>
+                                </div>
+                                <div class="contact-item">
+                                    <strong>Office Hours:</strong>
+                                    <p>Monday - Friday: 8:00 AM - 5:00 PM<br>
+                                    Saturday: 9:00 AM - 12:00 PM<br>
+                                    Sunday: Closed</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <div id="appointmentModal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Book an Appointment</h2>
+            <form id="appointmentForm">
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="phone">Phone Number</label>
+                    <input type="tel" id="phone" required>
+                </div>
+                <div class="form-group">
+                    <label for="date">Preferred Date</label>
+                    <input type="date" id="date" required>
+                </div>
+                <div class="form-group">
+                    <label for="time">Preferred Time</label>
+                    <select id="time" required>
+                        <option value="">Select a time</option>
+                        <option value="9:00 AM">9:00 AM</option>
+                        <option value="10:00 AM">10:00 AM</option>
+                        <option value="11:00 AM">11:00 AM</option>
+                        <option value="1:00 PM">1:00 PM</option>
+                        <option value="2:00 PM">2:00 PM</option>
+                        <option value="3:00 PM">3:00 PM</option>
+                        <option value="4:00 PM">4:00 PM</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="reason">Reason for Visit</label>
+                    <textarea id="reason" rows="3" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="insurance">Insurance Provider</label>
+                    <input type="text" id="insurance">
+                </div>
+                <button type="submit" class="submit-btn">Submit Request</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; DOC DIRECT. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
