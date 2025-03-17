@@ -1,4 +1,61 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
 
+body {
+  background-color: #ffffff;
+  height: 200vh; /* Just to show scrolling effect */
+  padding-top: 80px; /* Space for fixed navbar */
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 30px;
+  background: linear-gradient(90deg, #007bff, #00c3ff);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-in-out;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 1000;
+}
+
+.navbar.scrolled {
+  background: rgba(0, 123, 255, 0.8);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: white;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+}
+
+.nav-links li {
+  margin: 0 15px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  font-size: 1.2rem;
+  color: white;
+  transition: color 0.3s ease-in-out, transform 0.3s;
+}
+
+.nav-links a:hover {
+  color: #ffeb3b;
+  transform: scale(1.1);
+}
 #test{
     display: flex;
     justify-content: center;
@@ -18,7 +75,7 @@
 .login {
     display: inline-block;
     border-radius: 4px;
-    background-color: #1e62f4;
+    background: linear-gradient(90deg, #007bff, #00c3ff);
     border: none;
     color: #FFFFFF;
     text-align: center;

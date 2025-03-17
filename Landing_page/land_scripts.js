@@ -65,3 +65,5 @@ function showSlides() {
 
     dots[slideIndex].className += " active";
 }
+
+
