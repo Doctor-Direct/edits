@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Doctor Profile</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="doceditm.css">
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Edit Doctor Profile</h1>
+            <div class="breadcrumb">
+                <a href="#">Dashboard</a>
+                <span class="separator">/</span>
+                <a href="#">Profile</a>
+                <span class="separator">/</span>
+                <span class="current">Edit</span>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <form id="edit-profile-form">
+                <!-- Profile Image Section -->
+                <div class="profile-image-container">
+                    <div class="profile-image">
+                        <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Doctor's Photo" id="profile-preview">
+                        <label for="profile-upload" class="profile-image-overlay">
+                            <i class="fas fa-camera"></i>
+                        </label>
+                        <input type="file" id="profile-upload" class="file-input" accept="image/*">
+                    </div>
+                    <div class="upload-instructions">
+                        <h3>Profile Photo</h3>
+                        <p>Upload a professional photo for your profile. Recommended size: 400x400 pixels.</p>
+                        <label for="profile-upload" class="upload-btn">
+                            <i class="fas fa-upload"></i>
+                            Choose Image
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Basic Information Section -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-user-md"></i>
+                        Basic Information
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" class="form-control" value="sssss" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" class="form-control" value="kkkkk" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="specialty">Specialty</label>
+                            <div class="select-wrapper">
+                                <select id="specialty" class="form-control" required>
+                                    <option value="">Select Specialty</option>
+                                    <option value="cardiology" selected>Cardiology</option>
+                                    <option value="dermatology">Dermatology</option>
+                                    <option value="neurology">Neurology</option>
+                                    <option value="orthopedics">Orthopedics</option>
+                                    <option value="pediatrics">Pediatrics</option>
+                                    <option value="psychiatry">Psychiatry</option>
+                                    <option value="urology">Urology</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" class="form-control" value="dr.gmail.@com" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="phone">Phone Number</label>
+                            <input type="tel" id="phone" class="form-control" value="0000000000" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="license">Medical License Number</label>
+                            <input type="text" id="license" class="form-control" value="12345678" required>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Professional Bio</label>
+                        <textarea id="bio" class="form-control" rows="4">Dr.  is a board-certified cardiologist with over 15 years of experience in diagnosing and treating heart conditions. He specializes in preventive cardiology and heart failure management.</textarea>
+                    </div>
+                    <div class="form-group">
+                        <label>Rating</label>
+                        <div class="rating-input">
+                            <div class="rating-stars">
+                                <i class="fas fa-star rating-star active" data-value="1"></i>
+                                <i class="fas fa-star rating-star active" data-value="2"></i>
+                                <i class="fas fa-star rating-star active" data-value="3"></i>
+                                <i class="fas fa-star rating-star active" data-value="4"></i>
+                                <i class="fas fa-star-half-alt rating-star active" data-value="4.5"></i>
+                            </div>
+                            <span class="rating-value">4.5</span>
+                            <input type="hidden" id="rating" value="4.5">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hospitals Section -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-hospital"></i>
+                        Hospitals
+                    </div>
+                    <div class="dynamic-list" id="hospitals-list">
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value="General Hospital" placeholder="Hospital name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value=" Medical Center" placeholder="Hospital name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value="Healthcare" placeholder="Hospital name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" id="add-hospital">
+                        <i class="fas fa-plus"></i>
+                        Add Hospital
+                    </button>
+                </div>
+
+                <!-- Education Section -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-graduation-cap"></i>
+                        Education
+                    </div>
+                    <div class="dynamic-list" id="education-list">
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value=" Medical School" placeholder="Degree, Institution">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value="Hospital" placeholder="Degree, Institution">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value=" Clinic" placeholder="Degree, Institution">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" id="add-education">
+                        <i class="fas fa-plus"></i>
+                        Add Education
+                    </button>
+                </div>
+
+                <!-- Certifications Section -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-certificate"></i>
+                        Certifications
+                    </div>
+                    <div class="dynamic-list" id="certifications-list">
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value=" Internal Medicine" placeholder="Certification name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value=" College of Cardiology" placeholder="Certification name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <input type="text" class="form-control" value="Life Support" placeholder="Certification name">
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" id="add-certification">
+                        <i class="fas fa-plus"></i>
+                        Add Certification
+                    </button>
+                </div>
+
+                <!-- Languages Section -->
+                <div class="form-section">
+                    <div class="form-section-title">
+                        <i class="fas fa-language"></i>
+                        Languages
+                    </div>
+                    <div class="dynamic-list" id="languages-list">
+                        <div class="dynamic-item">
+                            <div class="form-row" style="margin-bottom: 0;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <input type="text" class="form-control" value="English" placeholder="Language">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <div class="select-wrapper">
+                                        <select class="form-control">
+                                            <option value="native" selected>Native</option>
+                                            <option value="fluent">Fluent</option>
+                                            <option value="intermediate">Intermediate</option>
+                                            <option value="basic">Basic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <div class="form-row" style="margin-bottom: 0;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <input type="text" class="form-control" value="tamil" placeholder="Language">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <div class="select-wrapper">
+                                        <select class="form-control">
+                                            <option value="native">Native</option>
+                                            <option value="fluent" selected>Fluent</option>
+                                            <option value="intermediate">Intermediate</option>
+                                            <option value="basic">Basic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                        <div class="dynamic-item">
+                            <div class="form-row" style="margin-bottom: 0;">
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <input type="text" class="form-control" value="sinhala" placeholder="Language">
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;">
+                                    <div class="select-wrapper">
+                                        <select class="form-control">
+                                            <option value="native">Native</option>
+                                            <option value="fluent">Fluent</option>
+                                            <option value="intermediate">Intermediate</option>
+                                            <option value="basic" selected>Basic</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <button type="button" class="btn-remove"><i class="fas fa-times"></i></button>
+                        </div>
+                    </div>
+                    <button type="button" class="btn-add" id="add-language">
+                        <i class="fas fa-plus"></i>
+                        Add Language
+                    </button>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancel-btn">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

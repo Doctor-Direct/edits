@@ -330,7 +330,7 @@ p {
   font-size: 14px;
 }
 
-/* Add margin between Doctor Name and Specialization */
+/* Add margin betwgiteen Doctor Name and Specialization */
 #doctor-name {
   margin-right: 20px; /* Adjust the value as needed */
 }
