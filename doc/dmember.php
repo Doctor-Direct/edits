@@ -74,7 +74,7 @@ try {
                 <div class="section-header">
                     <h2>Doctor Profile</h2>
                     <div class="actions">
-                        <button onclick="window.location.href='editpro.index.html'">
+                        <button onclick="window.location.href='doceditm.html'">
                             <i class="fas fa-edit"></i>
                             Edit Profile
                         </button>
