@@ -211,11 +211,11 @@ p {
 }
 
 .section {
-    margin: 10px;
+    margin: 5px;
     max-width: 50%;
-    height: 400px;
-    background: white;
-    padding: 20px;
+    height: 200px;
+    background: rgb(209, 204, 204);
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
@@ -230,18 +230,18 @@ p {
 }
 
 .part {
-    margin-top: 50px;
+   
     text-align: center;
     padding: 50px 20px;
     height: auto;
 }
 
 .section_part{
-    margin: 10px;
+    margin: 5px;
     max-width: aut0;
     height: auto;
-    background: white;
-    padding: 20px;
+    background: rgb(221, 215, 215);
+    padding: 10px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
