@@ -1,5 +1,6 @@
 <?php
     include 'c:/xampp/htdocs/doc_direct_main/connection.php'; // Include your database connection
+    
 
     // Fetch categories from the database
     $category_query = "SELECT category_id, category_name FROM category";
@@ -13,7 +14,6 @@
         die('Query Failed: ' . mysqli_error($connection));
     }
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>

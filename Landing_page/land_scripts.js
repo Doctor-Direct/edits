@@ -7,6 +7,37 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Start the automatic slideshow
     startSlideShow();
+
+    // Search functionality
+    const searchInput = document.getElementById('searchInput');
+    const resultsContainer = document.querySelector('.results-container');
+
+    if (searchInput && resultsContainer) {
+        searchInput.addEventListener('input', function () {
+            const searchTerm = searchInput.value.trim();
+
+            if (searchTerm.length >= 2) { // Only search if the term is 2 characters or longer
+                fetch(`search_doctors.php?term=${encodeURIComponent(searchTerm)}`)
+                    .then(response => response.text())
+                    .then(data => {
+                        // Display the results
+                        resultsContainer.innerHTML = data;
+                    })
+                    .catch(error => console.error('Error fetching search results:', error));
+            } else {
+                // Clear results if the search term is too short
+                resultsContainer.innerHTML = '';
+            }
+        });
+
+        // Handle clicking on a result item
+        resultsContainer.addEventListener('click', function (event) {
+            if (event.target.classList.contains('result-item')) {
+                searchInput.value = event.target.textContent; // Populate the search bar with the selected doctor's name
+                resultsContainer.innerHTML = ''; // Clear the results dropdown
+            }
+        });
+    }
 });
 
 let slideIndex = 0;
@@ -51,7 +82,7 @@ function showSlides() {
         slides[i].style.opacity = "0"; // Set opacity to 0 for fade-out
         slides[i].style.display = "none";
     }
-    
+
     // Remove "active" from all dots
     for (let i = 0; i < dots.length; i++) {
         dots[i].className = dots[i].className.replace(" active", "");
@@ -65,5 +96,3 @@ function showSlides() {
 
     dots[slideIndex].className += " active";
 }
-
-
