@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Sidebar Navigation -->
+        <nav class="sidebar">
+            <div class="logo">
+                <i class="fas fa-heartbeat"></i>
+                <h1>MedPortal</h1>
+            </div>
+            <ul>
+                <li class="active" id="profile-nav">
+                    <a href="#profile">
+                        <i class="fas fa-user-md"></i>
+                        <span>Profile</span>
+                    </a>
+                </li>
+                <li id="appointments-nav">
+                    <a href="#appointments">
+                        <i class="fas fa-calendar-check"></i>
+                        <span>Appointments</span>
+                    </a>
+                </li>
+                <li id="logout-nav">
+                    <a href="#logout">
+                        <i class="fas fa-sign-out-alt"></i>
+                        <span>Log Out</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content -->
+        <div class="content">
+            <!-- Profile Section -->
+            <section id="profile" class="section active">
+                <div class="section-header">
+                    <h2>Patient Profile</h2>
+                    <div class="actions">
+                        <button onclick="window.location.href='editpro.index.html'">
+                            <i class="fas fa-edit"></i>
+                            Edit Profile
+                        </button>
+                    </div>
+                </div>
+
+                <div class="profile-card">
+                    <div class="profile-header">
+                        <div class="profile-avatar">
+                            <img src="https://randomuser.me/api/portraits/men/36.jpg" alt="Patient's Photo">
+                        </div>
+                        <div class="profile-info">
+                            <h3>aaaaa</h3>
+                        </div>
+                    </div>
+                    <!-- Last Two Appointments in Profile -->
+                    <div class="profile-appointments">
+                        <h4>Recent Appointments</h4>
+                        <div class="appointments-list" id="profile-appointments-list">
+                            <!-- Last two appointments will be shown here -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Appointments Section -->
+            <section id="appointments" class="section">
+                <div class="section-header">
+                    <h2>Appointments</h2>
+                </div>
+
+                <!-- Appointments List -->
+                <div class="appointments-list" id="appointments-list">
+                    <!-- Additional appointments will be dynamically loaded here -->
+                </div>
+
+                <!-- Appointment History Section -->
+                <div id="appointment-history" class="appointment-history" style="display: none;">
+                    <h3>Appointment History</h3>
+                    <div id="history-list"></div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -42,6 +42,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    margin: 5px;
 }
 
 .modal-content {
@@ -60,9 +61,35 @@
 
 button {
     transition: transform 0.2s ease-in-out;
+    margin: 5px;
+    font-weight: 500;
+    background: linear-gradient(90deg, #007bff, #00c3ff);
 }
 
 button:hover {
+    transform: scale(1.1);
+}
+
+pbutton {
+    transition: transform 0.2s ease-in-out;
+    margin: 5px;
+    font-weight: 500;
+    background: linear-gradient(90deg,rgb(0, 255, 13),rgb(0, 255, 106));
+}
+
+pbutton:hover {
+    transform: scale(1.1);
+}
+cbutton {
+    transition: transform 0.2s ease-in-out;
+    margin: 5px;
+    font-weight: 500;
+    background: linear-gradient(90deg,rgb(255, 0, 21),rgb(255, 0, 221));
+    width: 5px;
+
+}
+
+cbutton:hover {
     transform: scale(1.1);
 }
 </style>
@@ -617,7 +644,7 @@ function showLoginOptions(event) {
     heading.style.marginBottom = '20px';
     modalContent.appendChild(heading);
 
-    // Add buttons
+      // Add buttons
     const doctorButton = document.createElement('button');
     doctorButton.textContent = 'Doctor';
     doctorButton.style.backgroundColor = '#007BFF';
@@ -631,10 +658,10 @@ function showLoginOptions(event) {
     doctorButton.onmouseover = () => doctorButton.style.transform = 'scale(1.1)';
     doctorButton.onmouseout = () => doctorButton.style.transform = 'scale(1)';
     doctorButton.onclick = () => {
-        window.location.href = 'doctor_login.php'; // Redirect to doctor login page
+    window.location.href = '/doc_direct_main/doc/login.php'; // Redirect to doctor login page
     };
 
-    const patientButton = document.createElement('button');
+    const patientButton = document.createElement('pbutton');
     patientButton.textContent = 'Patient';
     patientButton.style.backgroundColor = '#28A745';
     patientButton.style.color = '#fff';
@@ -646,14 +673,14 @@ function showLoginOptions(event) {
     patientButton.onmouseover = () => patientButton.style.transform = 'scale(1.1)';
     patientButton.onmouseout = () => patientButton.style.transform = 'scale(1)';
     patientButton.onclick = () => {
-        window.location.href = 'patient_login.php'; // Redirect to patient login page
+        window.location.href = '/doc_direct_main/pat/p_login.php'; // Redirect to patient login page
     };
 
     modalContent.appendChild(doctorButton);
     modalContent.appendChild(patientButton);
 
     // Add close button
-    const closeButton = document.createElement('button');
+    const closeButton = document.createElement('cbutton');
     closeButton.textContent = 'Close';
     closeButton.style.backgroundColor = '#DC3545';
     closeButton.style.color = '#fff';
