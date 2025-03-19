@@ -29,6 +29,43 @@
 
     <!-- Flatpickr JS for functionality -->
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <style>
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+button {
+    transition: transform 0.2s ease-in-out;
+}
+
+button:hover {
+    transform: scale(1.1);
+}
+</style>
 </head>
 <body>
 
@@ -540,11 +577,117 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+
 <!-- Main content would go here -->
     <div class="content-placeholder" style="height: 600px;">
         <!-- This is just a placeholder for the main content -->
     </div>
+    <script>
+// Function to show login options
+function showLoginOptions(event) {
+    event.preventDefault(); // Prevent default link behavior
 
+    // Create the modal overlay
+    const modalOverlay = document.createElement('div');
+    modalOverlay.className = 'modal-overlay';
+    modalOverlay.style.position = 'fixed';
+    modalOverlay.style.top = '0';
+    modalOverlay.style.left = '0';
+    modalOverlay.style.width = '100%';
+    modalOverlay.style.height = '100%';
+    modalOverlay.style.backgroundColor = 'rgba(0, 0, 0, 0.7)';
+    modalOverlay.style.display = 'flex';
+    modalOverlay.style.justifyContent = 'center';
+    modalOverlay.style.alignItems = 'center';
+    modalOverlay.style.zIndex = '1000';
+
+    // Create the modal content
+    const modalContent = document.createElement('div');
+    modalContent.className = 'modal-content';
+    modalContent.style.backgroundColor = '#fff';
+    modalContent.style.padding = '20px';
+    modalContent.style.borderRadius = '10px';
+    modalContent.style.textAlign = 'center';
+    modalContent.style.boxShadow = '0 4px 10px rgba(0, 0, 0, 0.2)';
+    modalContent.style.animation = 'fadeIn 0.5s ease-in-out';
+
+    // Add heading
+    const heading = document.createElement('h2');
+    heading.textContent = 'Are you a Doctor or Patient?';
+    heading.style.marginBottom = '20px';
+    modalContent.appendChild(heading);
+
+    // Add buttons
+    const doctorButton = document.createElement('button');
+    doctorButton.textContent = 'Doctor';
+    doctorButton.style.backgroundColor = '#007BFF';
+    doctorButton.style.color = '#fff';
+    doctorButton.style.border = 'none';
+    doctorButton.style.padding = '10px 20px';
+    doctorButton.style.borderRadius = '5px';
+    doctorButton.style.marginRight = '10px';
+    doctorButton.style.cursor = 'pointer';
+    doctorButton.style.transition = 'transform 0.2s ease-in-out';
+    doctorButton.onmouseover = () => doctorButton.style.transform = 'scale(1.1)';
+    doctorButton.onmouseout = () => doctorButton.style.transform = 'scale(1)';
+    doctorButton.onclick = () => {
+        window.location.href = 'doctor_login.php'; // Redirect to doctor login page
+    };
+
+    const patientButton = document.createElement('button');
+    patientButton.textContent = 'Patient';
+    patientButton.style.backgroundColor = '#28A745';
+    patientButton.style.color = '#fff';
+    patientButton.style.border = 'none';
+    patientButton.style.padding = '10px 20px';
+    patientButton.style.borderRadius = '5px';
+    patientButton.style.cursor = 'pointer';
+    patientButton.style.transition = 'transform 0.2s ease-in-out';
+    patientButton.onmouseover = () => patientButton.style.transform = 'scale(1.1)';
+    patientButton.onmouseout = () => patientButton.style.transform = 'scale(1)';
+    patientButton.onclick = () => {
+        window.location.href = 'patient_login.php'; // Redirect to patient login page
+    };
+
+    modalContent.appendChild(doctorButton);
+    modalContent.appendChild(patientButton);
+
+    // Add close button
+    const closeButton = document.createElement('button');
+    closeButton.textContent = 'Close';
+    closeButton.style.backgroundColor = '#DC3545';
+    closeButton.style.color = '#fff';
+    closeButton.style.border = 'none';
+    closeButton.style.padding = '10px 20px';
+    closeButton.style.borderRadius = '5px';
+    closeButton.style.marginTop = '20px';
+    closeButton.style.cursor = 'pointer';
+    closeButton.style.transition = 'transform 0.2s ease-in-out';
+    closeButton.onmouseover = () => closeButton.style.transform = 'scale(1.1)';
+    closeButton.onmouseout = () => closeButton.style.transform = 'scale(1)';
+    closeButton.onclick = () => {
+        document.body.removeChild(modalOverlay); // Close the modal
+    };
+
+    modalContent.appendChild(closeButton);
+
+    // Append modal content to overlay
+    modalOverlay.appendChild(modalContent);
+
+    // Append overlay to body
+    document.body.appendChild(modalOverlay);
+}
+
+// CSS for fade-in animation
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+`;
+document.head.appendChild(style);
+</script>
     <!-- Footer -->
     <footer class="footer">
         <div class="footer-container">

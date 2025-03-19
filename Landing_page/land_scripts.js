@@ -22,13 +22,11 @@ document.addEventListener("DOMContentLoaded", function () {
                     .then(data => {
                         // Display the results
                         resultsContainer.innerHTML = data;
-                        resultsContainer.style.display = 'block'; // Show results container
                     })
                     .catch(error => console.error('Error fetching search results:', error));
             } else {
                 // Clear results if the search term is too short
                 resultsContainer.innerHTML = '';
-                resultsContainer.style.display = 'none'; // Hide results container
             }
         });
 
@@ -37,15 +35,6 @@ document.addEventListener("DOMContentLoaded", function () {
             if (event.target.classList.contains('result-item')) {
                 searchInput.value = event.target.textContent; // Populate the search bar with the selected doctor's name
                 resultsContainer.innerHTML = ''; // Clear the results dropdown
-                resultsContainer.style.display = 'none'; // Hide results container
-            }
-        });
-
-        // Close results dropdown when clicking outside
-        document.addEventListener('click', function (event) {
-            if (!searchInput.contains(event.target) && !resultsContainer.contains(event.target)) {
-                resultsContainer.innerHTML = '';
-                resultsContainer.style.display = 'none'; // Hide results container
             }
         });
     }
@@ -106,16 +95,4 @@ function showSlides() {
     }, 50);
 
     dots[slideIndex].className += " active";
-}
-
-// Pause slideshow on hover
-const slideshowContainer = document.querySelector('.slideshow-container');
-if (slideshowContainer) {
-    slideshowContainer.addEventListener('mouseenter', () => {
-        clearInterval(slideTimer); // Pause slideshow
-    });
-
-    slideshowContainer.addEventListener('mouseleave', () => {
-        slideTimer = setInterval(() => plusSlides(1), 2000); // Resume slideshow
-    });
 }
