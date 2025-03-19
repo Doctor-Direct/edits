@@ -40,7 +40,7 @@
             <li><a href="appoinment.php">Appoinment</a></li>
             <li><a href="#">About Us</a></li>
             <li><a onclick="openNav()" style="cursor:pointer;"><i class="fi fi-br-search"></i></a></li>
-            <li><a href="#"><i class="fi fi-br-insert-alt"></i></a></li>
+            <li><a href="#" onclick="showLoginOptions(event)"><i class="fi fi-br-insert-alt"></i></a></li>
 
         </ul>
     </nav>
@@ -539,7 +539,68 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   }
 });
-    </script>
+</script>
+<!-- Main content would go here -->
+    <div class="content-placeholder" style="height: 600px;">
+        <!-- This is just a placeholder for the main content -->
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section about-section" id="about-us">
+                <h3>About Us</h3>
+                <p>Doc Direct is a leading online doctor appointment platform connecting patients with healthcare professionals. Our mission is to make healthcare accessible, convenient, and efficient for everyone.</p>
+                <p>Founded in 2025, we've helped thousands of patients find the right doctors and manage their healthcare journey seamlessly.</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="land_index.php">Home</a></li>
+                    <li><a href="land_log_index.html">Login</a></li>
+                    <li><a href="#">Find Doctors</a></li>
+                    <li><a href="#">Hospitals</a></li>
+                    <li><a href="#">Specialties</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Contact Us</h3>
+                <p><i class="contact-icon">📍</i>  City</p>
+                <p><i class="contact-icon">📞</i>0123456789</p>
+                <p><i class="contact-icon">✉️</i> jiwijazjKCj@gmail.com</p>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-links">
+                    <a href="#" class="social-icon">Facebook</a>
+                    <a href="#" class="social-icon">Twitter</a>
+                    <a href="#" class="social-icon">Instagram</a>
+                    <a href="#" class="social-icon">LinkedIn</a>
+                </div>
+                <div class="newsletter">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Your Email" required>
+                        <button type="submit">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2025 Doc Direct. All Rights Reserved.</p>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Terms of Service</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    
 
 </body>
 </html>
