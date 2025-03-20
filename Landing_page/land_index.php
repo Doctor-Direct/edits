@@ -101,8 +101,8 @@ cbutton:hover {
         <ul class="nav-links">
             <li><a href="land_index.php">Home</a></li>
             
-            <li><a href="appoinment.php">Appoinment</a></li>
-            <li><a href="#">About Us</a></li>
+            <li><a href="appoinment.php">Services</a></li>
+            <li><a href="#">Profile</a></li>
             <li><a onclick="openNav()" style="cursor:pointer;"><i class="fi fi-br-search"></i></a></li>
             <li><a href="#" onclick="showLoginOptions(event)"><i class="fi fi-br-insert-alt"></i></a></li>
 
