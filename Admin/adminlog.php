@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 // Redirect to admin dashboard
                 echo "<script>
                     alert('Login Successful!');
-                    window.location.href = 'index.php';
+                    window.location.href = 'adminmain.php';
                 </script>";
                 exit();
             } else {
