@@ -241,3 +241,8 @@ body {
 .form button[type="submit"]:hover {
     background-color: #1d4ed8;
 }
+/* Input Wrapper */
+.input_wrapper {
+    position: relative;
+    margin-bottom: 15px;
+}
