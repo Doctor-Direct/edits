@@ -1,9 +1,12 @@
 <?php
+// Start output buffering at the very beginning
+ob_start();
+
 // Enable error reporting for debugging
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
-// Start session
+// Start session FIRST before any output
 session_start();
 
 // Include database connection
@@ -22,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $error_msg = "Username and Password are required.";
     } else {
         // Prepare the SQL query
-        $query = "SELECT * FROM patients WHERE username = ?";
+        $query = "SELECT * FROM patient WHERE username = ?";
         $stmt = mysqli_prepare($connection, $query);
         mysqli_stmt_bind_param($stmt, "s", $username);
         mysqli_stmt_execute($stmt);
@@ -33,11 +36,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Verify password
             if (password_verify($password, $row['password'])) {
                 // Store user info in session
-                $_SESSION['user_id'] = $row['id'];
-                $_SESSION['username'] = $row['username'];
+                $_SESSION['patient_id'] = $row['id'];
+                $_SESSION['patient_username'] = $row['username'];
+                $_SESSION['patient_fullname'] = $row['fullname'];
+                $_SESSION['patient_email'] = $row['email'];
+                
+                // Clear output buffer before redirect
+                ob_end_clean();
                 
                 // Redirect to patient dashboard
-                header("Location:test.html");
+                header("Location: pmember.php");
                 exit();
             } else {
                 $error_msg = "Invalid username or password.";
@@ -71,12 +79,12 @@ mysqli_close($connection);
 
             <?php if (!empty($error_msg)) { ?>
                 <div class="error-box">
-                    <p class="error"><?= $error_msg; ?></p>
+                    <p class="error"><?php echo htmlspecialchars($error_msg); ?></p>
                 </div>
             <?php } ?>
 
             <div class="input_wrapper">
-                <input type="text" name="username" class="input_field" required>
+                <input type="text" name="username" class="input_field" required value="<?php echo isset($_POST['username']) ? htmlspecialchars($_POST['username']) : ''; ?>">
                 <label class="label">Username</label>
                 <i class="fa-regular fa-user icon"></i>
             </div>
@@ -89,11 +97,11 @@ mysqli_close($connection);
 
             <div class="remember-forgot">
                 <div class="remember-me">
-                    <input type="checkbox" id="remember">
+                    <input type="checkbox" id="remember" name="remember">
                     <label for="remember">Remember Me</label>
                 </div>
                 <div class="forgot">
-                    <a href="#">Forgot Password?</a>
+                    <a href="forgot_password.php">Forgot Password?</a>
                 </div>
             </div>
 
@@ -108,3 +116,7 @@ mysqli_close($connection);
     </div>
 </body>
 </html>
+<?php
+// Flush output buffer if not already cleaned
+if (ob_get_length()) ob_end_flush();
+?>

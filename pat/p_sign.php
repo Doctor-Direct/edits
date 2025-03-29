@@ -37,7 +37,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Check if username or email already exists
-    $checkQuery = "SELECT * FROM patients WHERE email='$email' OR username='$username'";
+    $checkQuery = "SELECT * FROM patient WHERE email='$email' OR username='$username'";
     $result = mysqli_query($connection, $checkQuery);
     if (mysqli_num_rows($result) > 0) {
         $errors[] = "Email or Username already exists!";
@@ -47,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (empty($errors)) {
         $hashed_password = password_hash($password, PASSWORD_DEFAULT); // Secure hashing
 
-        $query = "INSERT INTO patients (fullname, contact, birthday, nic, gender, address, email, username, password)
+        $query = "INSERT INTO patient (fullname, contact, birthday, nic, gender, address, email, username, password)
                   VALUES ('$fullname', '$contact', '$birthday', '$nic', '$gender', '$address', '$email', '$username', '$hashed_password')";
 
         if (mysqli_query($connection, $query)) {
