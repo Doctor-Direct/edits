@@ -151,11 +151,11 @@ mysqli_stmt_close($stmt);
                 <p>Patient ID: <?php echo htmlspecialchars($patient['id']); ?></p>
                 
                 <ul class="profile-nav">
-                    <li><a href="#" class="active">Profile</a></li>
-                    <li><a href="appointments.php">Appointments</a></li>
-                    <li><a href="prescriptions.php">Prescriptions</a></li>
-                    <li><a href="medical_history.php">Medical History</a></li>
-                    <li><a href="settings.php">Account Settings</a></li>
+                    <li><a href="" class="active">Profile</a></li>
+                    <li><a href="psearch.php">Appointments</a></li>
+                    <li><a href="#">Prescriptions</a></li>
+                    <li><a href="#">Medical History</a></li>
+                    <li><a href="#">Account Settings</a></li>
                 </ul>
             </div>
             
